@@ -1,0 +1,3 @@
+/home/mylord/Program/DataCollector/DataCollecterServer/CMakeFiles/rebuild_cache.dir
+/home/mylord/Program/DataCollector/DataCollecterServer/CMakeFiles/main.dir
+/home/mylord/Program/DataCollector/DataCollecterServer/CMakeFiles/edit_cache.dir

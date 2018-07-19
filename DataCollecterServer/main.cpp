@@ -5,7 +5,7 @@
 
 Server server;
 
-DataShow dshow("../collect_information.txt");
+DataShow dshow("./collect_information.txt");
 
 
 void DataCollecter_t(int client_fd, char * ip);

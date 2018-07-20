@@ -1,0 +1,205 @@
+******收到来自127.0.0.1的数据(共计10个文件)******
+Number:1
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:1024KB
+Number:2
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:2048KB
+Number:3
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:3072KB
+Number:4
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:4096KB
+Number:5
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:5120KB
+Number:6
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:6144KB
+Number:7
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:7168KB
+Number:8
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:8192KB
+Number:9
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:9216KB
+Number:10
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:10240KB
+******收到来自127.0.0.1的数据(共计10个文件)******
+Number:1
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:1024KB
+Number:2
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:2048KB
+Number:3
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:3072KB
+Number:4
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:4096KB
+Number:5
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:5120KB
+Number:6
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:6144KB
+Number:7
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:7168KB
+Number:8
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:8192KB
+Number:9
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:9216KB
+Number:10
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:10240KB
+******收到来自127.0.0.1的数据(共计10个文件)******
+Number:1
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:1024KB
+Number:2
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:2048KB
+Number:3
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:3072KB
+Number:4
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:4096KB
+Number:5
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:5120KB
+Number:6
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:6144KB
+Number:7
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:7168KB
+Number:8
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:8192KB
+Number:9
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:9216KB
+Number:10
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:10240KB
+******收到来自127.0.0.1的数据(共计10个文件)******
+Number:1
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:1024KB
+Number:2
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:2048KB
+Number:3
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:3072KB
+Number:4
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:4096KB
+Number:5
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:5120KB
+Number:6
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:6144KB
+Number:7
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:7168KB
+Number:8
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:8192KB
+Number:9
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:9216KB
+Number:10
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:10240KB
+******收到来自127.0.0.1的数据(共计10个文件)******
+Number:1
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:1024KB
+Number:2
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:2048KB
+Number:3
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:3072KB
+Number:4
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:4096KB
+Number:5
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:5120KB
+Number:6
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:6144KB
+Number:7
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:7168KB
+Number:8
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:8192KB
+Number:9
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:9216KB
+Number:10
+	文件名:filename
+	文件路径:/path/path/path
+	文件大小:10240KB

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/main.dir/main.o CMakeFiles/main.dir/src/clientinfo.o CMakeFiles/main.dir/src/datashow.o CMakeFiles/main.dir/src/server.o  -o main -lpthread 

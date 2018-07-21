@@ -6,94 +6,72 @@
  ************************************************************************/
 
 #include <iostream>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "switch.h"
 #include <thread>
-#include <mutex>
-#include <pthread.h>
-#include <semaphore.h>
-#include <stddef.h>
-#include "file_collect.h"
 #include "file_send.h"
+#include "file_collect.h"
 
-pthread_mutex_t mutex;
-static sem_t sem_collect;
-static sem_t sem_send;
+struct File{
+     char path[128];
+     char buffer[4096];
+};
 
-// std::mutex m;
-// std::unique_lock<std::mutex> lk(m);
-
-File_Collect file_collector;    // 创建文件收集者临时对象
-File_Send file_send("192.168.43.7");       // 创建文件发送者对象
-
-void collectInfo(char dir[])
-{
-    sem_wait(&sem_collect); // sem_collect-1
-
-    std::cout<<"进入collectInfo"<<std::endl;
-    file_collector.listFiles(dir);
-    std::cout<<"文件数量:"<<file_collector.getFile.file_number<<std::endl;
-    sem_post(&sem_send);    // sem_send+1
-    std::cout<<"collectInfo执行完毕"<<std::endl;
-}
-
-void sendToServer(int sockfd)
-{
-    //pthread_mutex_lock(&mutex);
-    sem_wait(&sem_send);    // sem_send-1
-    std::cout<<"进入sendToServer"<<std::endl;
-    file_send.sendFiles(file_collector.getFile,sockfd);
-    //pthread_mutex_unlock(&mutex);
-    sem_post(&sem_collect); // sem_collect+1
-    std::cout<<"sendToServer执行完毕"<<std::endl;
-}
-
-
+extern bool newDir;
+extern char dir[200];
+extern File_Send file_send;
+extern File_Collect file_collector;
+void Command_t(int fd);
 
 int main(void)
 {
-    // 初始化信号量
-    sem_init(&sem_collect, 1, 1);   // 初始收集信号量为1
-    sem_init(&sem_send, 1, 0);     // 初始发送信号量为0
+    Context  *con=new Context();
+    AbsState  *on_state=new  OnState();
+    AbsState   *off_state=new  OffState();
+    con->setState(on_state);
 
-    char dir[200];
-    std::cout << "Enter a directory (ends with \'/\'): ";
-    std::cin.getline(dir, 200);     // 输入目录名
-    
-    std::cout<<"111111111111111111"<<std::endl;
     if(file_send.ConnectToServer())
     {
-        
-        pthread_mutex_init(&mutex,NULL);
-        std::cout<<"22222222222222222"<<std::endl;
-       
-        //file_collector.listFiles(dir);
-        // 开一个线程收集数据
-        
-
-        //std::thread task01(&collectInfo,dir);
-        //std::thread task01(&File_Collect::listFiles,&file_collector,dir);
-        
-        // 开另一个线程发送数据
-        int sockfd = file_send.getSockfd();
-        // collectInfo(dir);
-        // sendToServer(sockfd);
-        //file_send.sendFiles(file_collector.getFile,sockfd);
-        //std::thread task02(&sendToServer,sockfd);
-        //std::thread task02(&File_Send::sendFiles,&file_send,file_collector.getFile,sockfd);
-        //task01.detach();
-        //task02.detach();
-        std::thread task01(&collectInfo,dir);
-        std::thread task02(&sendToServer,sockfd);
-        task01.join();
-        task02.join();
-
-        std::cout<<"整个发送过程结束"<<std::endl;
+        std::thread cmd_t(&Command_t,file_send.getSockfd());
+        con->PressSwitch();
+        while(1)
+        {
+            con->PressSwitch();
+            std::cout << "2Enter a directory (ends with \'/\'): ";
+            std::cin.getline(dir, 200);     // 输入目录名
+            newDir = false;
+            
+        }
+        std::cout<<"111111111111111111"<<std::endl;
     }
+    
+    
     return 0;
+}
+
+void Command_t(int fd)
+{
+    char buffer[128];
+    read(fd, buffer, sizeof(buffer));
+    if(strncmp(buffer, "newpath", 7) == 0)
+    {
+        //检索发送数据
+        file_collector.listFiles(buffer+8);
+        int sockfd = file_send.getSockfd();
+        file_send.sendFiles(file_collector.getFile,sockfd);
+        buffer[0] = '\0';
+    }
+    else if(strncmp(buffer, "newfile", 7) == 0)
+    {
+        struct File fl;
+        read(fd, &fl, sizeof(struct File));
+        FILE * fp = fopen(fl.path, "w+");
+        fprintf(fp, fl.buffer);
+        fclose(fp);
+        buffer[0] = '\0';
+    }
+
 }

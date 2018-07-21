@@ -1,5 +1,5 @@
 //
-// Created by root on 18-7-19.
+// Created by root on 18-7-19
 //
 
 #ifndef INC_0709_FILE_COLLECT_H
@@ -17,14 +17,18 @@
 #define FILE_FUFFIX ".txt"    // 文件后缀
 #define FILE_MIN_LENGTH 1
 
-std::vector<struct fileNode> file_vector;
+
 
 class File_Collect {
 protected:
+    std::vector<struct fileNode> file_vector;
 public:
     struct fileInfo getFile;
     void listFiles(const char * dir)
     {
+        // getFile.file=NULL;
+        // getFile.file_number=0;
+        // file_vector.clear();
         std::cout<<"开始收集信息"<<std::endl;
         DIR* pDir;
         struct dirent* ptr;
@@ -43,7 +47,7 @@ public:
                     strcpy(str,dir);
                     strcat(str,ptr->d_name);
                     strcat(str,"/");
-                    sprintf("子目录为:%s\n",str);
+                    printf("子目录为:%s\n",str);
                     listFiles(str);
                 }
             }
@@ -76,8 +80,9 @@ public:
                                 printf("not enough memory!\n");
                                 exit(1);
                             }
-                            strcpy(node->file_name,ptr->d_name);
+                            strcpy(node->file_name,temp);
                             strcpy(node->file_path,dir);
+                            
                             node->file_size = (int)ceil((double)size/1024);
                             std::cout<<"file_size"<<node->file_size<<std::endl;
                             file_vector.insert(file_vector.end(),*node);
@@ -87,7 +92,7 @@ public:
                 }
             }
         }
-        //printf("傻逼\n");
+        
         std::cout<<"vector_size:"<<file_vector.size()<<std::endl;
         getFile.file = (struct fileNode*)malloc(sizeof(struct fileNode)*getFile.file_number);
         

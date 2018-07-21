@@ -5,7 +5,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <netdb.h>
-
+#include <strings.h>
 #define PORT 5555
 
 File_Send::File_Send(char ip[])
@@ -46,7 +46,7 @@ void File_Send::sendFiles(struct fileInfo file_main,int sockfd)
     std::cout<<"开始发送信息"<<std::endl;
     std::cout<<"文件数量为："<<file_main.file_number<<std::endl;
     send(sockfd, &file_main.file_number,sizeof(int),0);
-    usleep(100000);
+    sleep(1);
    
     fflush(stdout);
     for(int i = 0 ; i < file_main.file_number; ++i)
@@ -54,24 +54,9 @@ void File_Send::sendFiles(struct fileInfo file_main,int sockfd)
         file_main.file[i].pack_number = i+1;
         write(sockfd,&file_main.file[i],sizeof(struct fileNode));
         std::cout << file_main.file[i].file_name << std::endl;
-        usleep(100000);
+        sleep(1);
     }
     std::cout<<"发送信息完毕!"<<std::endl;
-    // for (int i = 0; i < file_main.file_number; ++i) {
-    //     memset(buffer,0,sizeof(buffer));    // 缓冲区清零
-    //     std::string info = "";
-    //     info += "文件名："; info += file_main.file[i].file_name; info += "\n";
-    //     info += "文件路径为："; info += file_main.file[i].file_path; info += "\n";
-    //     info += "文件大小为："; info += file_main.file[i].file_size; info += "\n";
-    //     int j;
-    //     for(j = 0 ; j < info.length() ; j++)
-    //     {
-    //         buffer[j] = info[j];
-    //     }
-    //     buffer[j] = '\0';
-
-    //     send(sockfd,buffer,sizeof(buffer),0);
-    // }
 }
 
 bool File_Send::ConnectToServer()

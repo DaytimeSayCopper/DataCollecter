@@ -56,17 +56,17 @@ int main(int argc, char * argv[])
 
     while (true)
     {
-           struct FileNode fn;
+        struct FileNode fn;
         int num = 10;
         write(sockfd, &num, sizeof(int));
-        usleep(1000);
+        sleep(1);
         strncpy(fn.file_name, "filename", 128);
         strncpy(fn.file_path, "/path/path/path", 1024);
         for (int i = 1; i <= num; i++) {
             fn.pack_number = i;
             fn.file_size = i * 1024;
             write(sockfd, &fn, sizeof(struct FileNode));
-            usleep(10000);
+            sleep(1);
         }
         printf("yes\n");
         sleep(5);

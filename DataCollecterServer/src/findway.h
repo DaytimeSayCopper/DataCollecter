@@ -26,4 +26,21 @@ public:
     }
 };
 
+
+class FindByIP
+{
+private:
+    char ip[15];
+
+public:
+    FindByIP(char * ip)
+    {
+        strncpy(this->ip, ip, 15);
+    }
+    bool operator()(std::vector<struct ClientStr>::value_type & value)
+    {
+        return strcmp(this->ip, inet_ntoa(value.client_addr.sin_addr)) == 0;
+    }
+};
+
 #endif //DATACOLLECTERSERVER_FINDWAY_H

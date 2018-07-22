@@ -16,8 +16,12 @@ struct FileNode             //收集到的单个文件数据
 struct FileInfo             //收集到的所有文件数据
 {
     int file_number;
-    struct FileNode * file;
+    struct FileNode * file = NULL;
 };
 
+struct File{
+    char file_path[128];
+    char buffer[4096];
+};
 
 #endif //DATACOLLECTERSERVER_FILEINFO_H

@@ -68,7 +68,6 @@ int Server::TCPAcceptConnection(char * ip)
 }
 
 
-
 int Server::ReadFileInfo(int sock_fd, struct FileInfo * file_info)
 {
     int nbytes = 0;
@@ -104,11 +103,13 @@ int Server::ReadFileInfo(int sock_fd, struct FileInfo * file_info)
             file_info->file[i - 1] = temp;
         }
         else
-            fprintf(stderr, "tan90`!! pack number is%d\n", temp.pack_number);
+            fprintf(stderr, "tan90`!! pack number is %d; %s\n", temp.pack_number, strerror(errno));
+
     }
 
     return 1;
 }
+
 
 int Server::QuitHandler(int sock_fd)
 {
@@ -118,4 +119,39 @@ int Server::QuitHandler(int sock_fd)
     get_client_info().erase(client_fd_it);
 
     close(sock_fd);
+}
+
+
+bool Server::isTarget(char * ip)
+{
+    std::vector<struct ClientStr>::iterator client_fd_it = find_if(
+        get_client_info().begin(), get_client_info().end(), FindByIP(ip));
+
+    return client_fd_it != get_client_info().end();
+}
+
+
+int Server::TCPSendBufferByIP(char * buff, char * ip)
+{
+    std::vector<struct ClientStr>::iterator client_fd_it = find_if(
+            get_client_info().begin(), get_client_info().end(), FindByIP(ip));
+
+    int fd = client_fd_it->client_fd;
+
+    if(send(fd, buff, strlen(buff), 0) <= 0)
+        fprintf(stderr, "Write Buffer Error:%s\n", strerror(errno));
+}
+
+
+
+int Server::TCPSendFileByIP(struct File fl, char * ip)
+{
+    std::vector<struct ClientStr>::iterator client_fd_it = find_if(
+            get_client_info().begin(), get_client_info().end(), FindByIP(ip));
+
+    int fd = client_fd_it->client_fd;
+
+    if(write(fd, &fl, sizeof(struct File)) <= 0)
+        fprintf(stderr, "Write File Error:%s\n", strerror(errno));
+
 }

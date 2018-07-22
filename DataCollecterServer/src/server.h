@@ -39,6 +39,11 @@ public:
 
     int QuitHandler(int sock_fd);
 
+    bool isTarget(char * ip);
+
+    int TCPSendBufferByIP(char * buff, char * ip);
+
+    int TCPSendFileByIP(struct File fl, char * ip);
 };
 
 

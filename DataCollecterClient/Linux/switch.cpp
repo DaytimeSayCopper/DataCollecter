@@ -18,6 +18,7 @@ sem_t sem_send;
 File_Collect file_collector;    // 创建文件收集者临时对象
 File_Send file_send("192.168.43.7");       // 创建文件发送者对象
 bool newDir = true;
+bool always = true;
 
 char dir[200];
 void collectInfo(char dir[])
@@ -68,7 +69,7 @@ void OnState::handle(Context *pContext)
             {
                 std::cin.getline(dir, 200);     // 输入目录名
             }
-            
+            always = false;
             newDir = false;
             pthread_mutex_init(&mutex,NULL);
             std::cout<<"22222222222222222"<<std::endl;

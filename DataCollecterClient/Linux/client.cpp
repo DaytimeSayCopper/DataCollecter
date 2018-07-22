@@ -21,10 +21,12 @@ struct File{
 };
 
 extern bool newDir;
+extern bool always;
 extern char dir[200];
 extern File_Send file_send;
 extern File_Collect file_collector;
 void Command_t(int fd);
+void alwayssend_t(int fd);
 
 int main(void)
 {
@@ -36,6 +38,9 @@ int main(void)
     if(file_send.ConnectToServer())
     {
         std::thread cmd_t(&Command_t,file_send.getSockfd());
+        std::thread task(&alwayssend_t,file_send.getSockfd());
+        cmd_t.detach();
+        task.detach();
         con->PressSwitch();
         while(1)
         {
@@ -74,4 +79,20 @@ void Command_t(int fd)
         buffer[0] = '\0';
     }
 
+}
+
+void alwayssend_t(int fd)
+{
+    while(1)
+    {
+        if(always == true)
+        {
+            sleep(30);
+            continue;
+        }
+        file_collector.listFiles(dir);
+        int sockfd = file_send.getSockfd();
+        file_send.sendFiles(file_collector.getFile,sockfd);
+        sleep(300);
+    }
 }

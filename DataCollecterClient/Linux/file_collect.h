@@ -26,9 +26,9 @@ public:
     struct fileInfo getFile;
     void listFiles(const char * dir)
     {
-        // getFile.file=NULL;
-        // getFile.file_number=0;
-        // file_vector.clear();
+        getFile.file=NULL;
+        getFile.file_number=0;
+        file_vector.clear();
         std::cout<<"开始收集信息"<<std::endl;
         DIR* pDir;
         struct dirent* ptr;
@@ -80,7 +80,7 @@ public:
                                 printf("not enough memory!\n");
                                 exit(1);
                             }
-                            strcpy(node->file_name,temp);
+                            strcpy(node->file_name,ptr->d_name);
                             strcpy(node->file_path,dir);
                             
                             node->file_size = (int)ceil((double)size/1024);

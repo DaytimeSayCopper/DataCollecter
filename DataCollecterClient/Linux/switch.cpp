@@ -16,7 +16,7 @@ sem_t sem_collect;
 sem_t sem_send;
 
 File_Collect file_collector;    // 创建文件收集者临时对象
-File_Send file_send("192.168.1.101");       // 创建文件发送者对象
+File_Send file_send("192.168.43.7");       // 创建文件发送者对象
 bool newDir = true;
 
 char dir[200];

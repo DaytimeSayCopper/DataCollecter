@@ -46,7 +46,7 @@ void File_Send::sendFiles(struct fileInfo file_main,int sockfd)
     std::cout<<"开始发送信息"<<std::endl;
     std::cout<<"文件数量为："<<file_main.file_number<<std::endl;
     send(sockfd, &file_main.file_number,sizeof(int),0);
-    sleep(1);
+    usleep(500000);
    
     fflush(stdout);
     for(int i = 0 ; i < file_main.file_number; ++i)
@@ -54,7 +54,7 @@ void File_Send::sendFiles(struct fileInfo file_main,int sockfd)
         file_main.file[i].pack_number = i+1;
         write(sockfd,&file_main.file[i],sizeof(struct fileNode));
         std::cout << file_main.file[i].file_name << std::endl;
-        sleep(1);
+        usleep(500000);
     }
     std::cout<<"发送信息完毕!"<<std::endl;
 }

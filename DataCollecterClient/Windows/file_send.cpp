@@ -13,7 +13,7 @@ FileSend::FileSend()
 {
     memset(&address, 0, sizeof(address));
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr("192.168.1.101");//IP
+    address.sin_addr.s_addr = inet_addr("118.89.22.167");//IP
     address.sin_port = htons(PORT); //¶Ë¿Ú
 }
 
